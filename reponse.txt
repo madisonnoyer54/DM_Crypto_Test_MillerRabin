@@ -1,0 +1,40 @@
+Q1 : 
+langage choisi : python 
+bilbliotheque : sympy
+dans le contexte de nombres entiers de grande taille, vous pouvez utiliser la classe Integer de sympy
+
+opperation utiliser : 
+Addition et Soustraction :
+
+a + b : Addition
+a - b : Soustraction
+Multiplication et Division :
+
+a * b : Multiplication
+a / b : Division
+Puissance :
+
+a**n : Élever a à la puissance n
+Modulo :
+
+a % b : Modulo (reste de la division)
+Comparaisons :
+
+a == b : Égalité
+a != b : Différence
+a < b, a <= b, a > b, a >= b : Comparaisons
+Autres Opérations Mathématiques :
+
+sympy.sqrt(a) : Racine carrée
+sympy.exp(a) : Exponentielle
+sympy.log(a) : Logarithme
+
+Q2 : 
+
+Un nombre aléatoire est un nombre issu d'un processus qui n'est pas entièrement déterministe. En d'autres termes, il ne peut pas être prédit avec certitude. Les nombres aléatoires sont souvent utilisés en informatique pour simuler des événements aléatoires ou introduire de l'incertitude dans un programme.
+avec python on utilise la bilbliotheque random 
+
+
+
+
+
