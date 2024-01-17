@@ -1,2 +1,4 @@
-from sympy import Integer
-import random
+import secrets
+
+#random_bits = secrets.randbits(n)
+
