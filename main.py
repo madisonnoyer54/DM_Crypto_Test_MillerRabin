@@ -2,8 +2,6 @@ import secrets
 from sympy import symbols, Eq, solve
 import random
 
-#random_bits = secrets.randbits(n)
-
 
 # Question 3
 def Decomp(n):
@@ -19,23 +17,13 @@ def Decomp(n):
     return s, d
 
 # Test de Decomp sur 10000 valeurs différentes
-test_values = range(2, 10002)  # Commence à partir de 2 car la décomposition n'est pas définie pour n=1
-
-for n in test_values:
+test_valeur = range(2, 10002)  # Commence à partir de 2 car la décomposition n'est pas définie pour n=1
+for n in test_valeur:
     s, d = Decomp(n)
     if(n-1 != 2**s*d):
-        print("Le teste à echoué : n - 1 = 2^s * d")
-
-"""
-Cette m´ethode rapide d’exponentiation modulaire est d´ecrite dans l’Annexe A. Il s’agit donc d’impl´e-
-menter ici cette m´ethode sous la forme d’une fonction ExpMod() qui prend en entr´ee n, a et t et qui
-renvoie en sortie at mod n.
-
-Question 4. Impl´ementez la fonction ExpMod(). Testez-la sur 10000 valeurs diff´erentes.
+        print("Le teste de la question 3 à echoué avec les valeur s = {s} d = {d}")
 
 
-
-"""
 
 # Question 4 
 def ExpMod(n, a, t):
@@ -59,14 +47,50 @@ def ExpMod(n, a, t):
 
 
 # Test sur 10000 valeurs différentes
-test_values = range(1, 10001) 
-for z in test_values:
-    a =  random.randint(1, 500)
-    t =  random.randint(1, 500)
-    n =  random.randint(1, 500)
+for z in range(10000) :
+    a =  random.randint(1, 10000)
+    t =  random.randint(1, 10000)
+    n =  random.randint(1, 10000)
     f = ExpMod(n,a,t)
     if(f != a**t % n):
-        print("Le teste a échouer")
+        print(f"Le teste de la question 4 a échouer sur les valeur a= {a} t = {t} et n = {n}")
   
 
+# Question 5
 
+def MillerRabin(n, cpt):
+    for _ in range(cpt):
+        stop = False
+        # 1
+        s, d = Decomp(n) 
+
+        if d % 2 == 0:
+            print(" d n'est pas impair")
+
+        # 2
+        a = random.randint(1, n-1)
+
+        # 3
+        resultat = ExpMod(n, a, d)
+        if resultat == 1 or resultat == - 1:
+            stop = True
+
+        # 4
+        i = 0
+        while i < s or stop == False:
+            resultat = ExpMod(n, a, d * 2**i)
+            if resultat == - 1:
+                stop = True
+            elif resultat == 1:
+                return 0
+            i= i+1
+
+        # 5 
+        if(i == s and ExpMod(n, a, d * 2**i) != 1):
+            return 0
+
+    return 1
+
+# 0 si composé 
+# 1 si premier
+print(MillerRabin(17, 20))
