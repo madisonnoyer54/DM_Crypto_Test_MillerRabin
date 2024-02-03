@@ -18,35 +18,15 @@ def Decomp(n):
 
 # Test de Decomp sur 10000 valeurs différentes
 for _ in range(10000):
-    n =  random.randint(2, 10000)
+    n =  random.randint(2, 100000)
     s, d = Decomp(n)
     if(n-1 != 2**s*d):
-        print(f"Le teste de la question 3 à echoué avec les valeur s = {s} d = {d}")
+        print(f"Le teste de la question 3 à echoué avec les valeur n={n} s = {s} d = {d}")
 
 
 
 # Question 4 
-        """
-def ExpMod(n, a, t):
-    # Mettre t en binaire 
-    t_binaire = bin(t)[2:]
-
-    # Prendre la taille 
-    r = len(t_binaire)
- 
-    # t = 1
-    if t_binaire == '1':
-        return a % n
-
-    # t est pair   
-    elif t_binaire[-1] == '0' :
-        return ExpMod(n, (a**2) % n, t // 2)
-      
-    # t est impair
-    else: 
-        return (a * ExpMod(n, (a**2) % n, (int(t) - 1) // 2)) % n
-
-"""
+# Avec python on ne peux pas faire de la recursion sur des grand nombre sens faire tout planter, donc voici une version adapter.
 def ExpMod(n, a, t):
     result = 1
     a = a % n  
@@ -116,15 +96,15 @@ def MillerRabin(n, cpt):
 # Question 6
 n1 = "FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245E485B576625E7EC6F44C42E9A63A3620FFFFFFFFFFFFFFFF"
 n1 = int(n1, 16)
-print("n1 =", MillerRabin(n1, 20))
+print("n1 (768 bits) =", MillerRabin(n1, 20))
 
 n2 = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEC4FFFFDAF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000002D9AB"
 n2 = int(n2, 16)
-print("n2 =", MillerRabin(n2, 20))
+print("n2 (768 bits) =", MillerRabin(n2, 20))
 
 n3 = "FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7EDEE386BFB5A899FA5AE9F24117C4B1FE649286651ECE65381FFFFFFFFFFFFFFFF"
 n3 = int(n3, 16)
-print("n3 =", MillerRabin(n3, 20))
+print("n3 (1024 bits) =", MillerRabin(n3, 20))
 
 
 # Question 7
@@ -134,14 +114,13 @@ def Eval(b, cpt):
     while MillerRabin(n, cpt) == 0 :
         compteur = compteur + 1
         n = secrets.randbits(b)
-
+     
     return compteur
 
 
 
 # Question 8
 tailles_bits = [128, 256, 512, 1024, 2048, 4096]
-#tailles_bits = [128, 256, 512]
 moyennes = []
 
 for taille in tailles_bits:
