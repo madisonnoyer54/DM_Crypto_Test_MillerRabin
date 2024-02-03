@@ -32,13 +32,13 @@ def ExpMod(n, a, t):
 
     # Prendre la taille 
     r = len(t_binaire)
-
+ 
     # t = 1
     if t_binaire == '1':
         return a % n
 
-    # t est pair
-    elif t_binaire[-1] == '0':
+    # t est pair   
+    elif t_binaire[-1] == '0' :
         return ExpMod(n, (a**2) % n, t // 2)
       
     # t est impair
@@ -57,13 +57,15 @@ for z in range(10000) :
   
 
 # Question 5
-
 def MillerRabin(n, cpt):
-    for _ in range(cpt):
+    for q in range(cpt):
+        #print("boucle",q)
         stop = False
         # 1
-        s, d = Decomp(n) 
+        s, d = Decomp(n)  
+        #print("s",s,"d",d)
 
+        # verifie que d impair 
         if d % 2 == 0:
             print(" d n'est pas impair")
 
@@ -73,24 +75,32 @@ def MillerRabin(n, cpt):
         # 3
         resultat = ExpMod(n, a, d)
         if resultat == 1 or resultat == - 1:
-            stop = True
+            stop = True # On peut r dire et on arret 
 
         # 4
         i = 0
-        while i < s or stop == False:
+        #print("ssssss",s)
+        while i < s and stop == False:
             resultat = ExpMod(n, a, d * 2**i)
-            if resultat == - 1:
-                stop = True
+            #print(resultat," ", i)
+            if resultat == -1:
+                stop = True # On peut rien dire et on arret 
             elif resultat == 1:
-                return 0
+                return 0 # conclure n est composer 
             i= i+1
 
         # 5 
-        if(i == s and ExpMod(n, a, d * 2**i) != 1):
-            return 0
+        if(i == s and ExpMod(n, a, d * 2**i) != 1 and stop == False):
+            return 0 # conclure que n composer 
+
 
     return 1
 
 # 0 si composé 
 # 1 si premier
-print(MillerRabin(17, 20))
+
+
+for z in range(5) :
+    a =  random.randint(1, 20)
+    print("teste", a)
+    print("RESULTA",MillerRabin(a, 20))
