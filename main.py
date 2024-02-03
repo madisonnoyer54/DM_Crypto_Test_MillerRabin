@@ -44,7 +44,7 @@ def ExpMod(n, a, t):
 
     return result
 
-# Test sur 10000 valeurs différentes
+# Test de ExpMod sur 10000 valeurs différentes
 for z in range(10000) :
     a =  random.randint(1, 10000)
     t =  random.randint(1, 10000)
@@ -129,7 +129,6 @@ for taille in tailles_bits:
         compteurs.append(Eval(taille, 20))
     moyenne_compteur = sum(compteurs) / 100
     moyennes.append(moyenne_compteur)
-    print(moyenne_compteur)
 
 
 # Graphe
