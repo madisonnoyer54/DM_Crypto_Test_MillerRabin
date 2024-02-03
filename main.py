@@ -1,6 +1,6 @@
 import secrets
-from sympy import symbols, Eq, solve
 import random
+import matplotlib.pyplot as plt
 
 
 # Question 3
@@ -17,15 +17,16 @@ def Decomp(n):
     return s, d
 
 # Test de Decomp sur 10000 valeurs différentes
-test_valeur = range(2, 10002)  # Commence à partir de 2 car la décomposition n'est pas définie pour n=1
-for n in test_valeur:
+for _ in range(10000):
+    n =  random.randint(2, 10000)
     s, d = Decomp(n)
     if(n-1 != 2**s*d):
-        print("Le teste de la question 3 à echoué avec les valeur s = {s} d = {d}")
+        print(f"Le teste de la question 3 à echoué avec les valeur s = {s} d = {d}")
 
 
 
 # Question 4 
+        """
 def ExpMod(n, a, t):
     # Mettre t en binaire 
     t_binaire = bin(t)[2:]
@@ -45,6 +46,23 @@ def ExpMod(n, a, t):
     else: 
         return (a * ExpMod(n, (a**2) % n, (int(t) - 1) // 2)) % n
 
+"""
+def ExpMod(n, a, t):
+    result = 1
+    a = a % n  
+
+    # Mettre t en binaire 
+    t_binaire = bin(t)[2:]  
+
+    # Prendre la taille 
+    r = len(t_binaire)
+
+    for i in range(r):
+        if t_binaire[r - i - 1] == '1':
+            result = (result * a) % n
+        a = (a * a) % n
+
+    return result
 
 # Test sur 10000 valeurs différentes
 for z in range(10000) :
@@ -73,7 +91,7 @@ def MillerRabin(n, cpt):
         # 3
         resultat = ExpMod(n, a, d)
         if resultat == 1 or resultat == - 1:
-            stop = True # On peut r dire et on arret 
+            stop = True # On peut rien dire et on arret 
 
         # 4
         i = 0
@@ -92,11 +110,53 @@ def MillerRabin(n, cpt):
 
     return 1
 
-# 0 si composé 
-# 1 si premier
 
 
-for z in range(500) :
-    a =  random.randint(2, 200)
-    print("teste", a)
-    print("RESULTA",MillerRabin(a, 20))
+
+# Question 6
+n1 = "FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245E485B576625E7EC6F44C42E9A63A3620FFFFFFFFFFFFFFFF"
+n1 = int(n1, 16)
+print("n1 =", MillerRabin(n1, 20))
+
+n2 = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEC4FFFFDAF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000002D9AB"
+n2 = int(n2, 16)
+print("n2 =", MillerRabin(n2, 20))
+
+n3 = "FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7EDEE386BFB5A899FA5AE9F24117C4B1FE649286651ECE65381FFFFFFFFFFFFFFFF"
+n3 = int(n3, 16)
+print("n3 =", MillerRabin(n3, 20))
+
+
+# Question 7
+def Eval(b, cpt):
+    compteur = 0
+    n = secrets.randbits(b)
+    while MillerRabin(n, cpt) == 0 :
+        compteur = compteur + 1
+        n = secrets.randbits(b)
+
+    return compteur
+
+
+
+# Question 8
+tailles_bits = [128, 256, 512, 1024, 2048, 4096]
+#tailles_bits = [128, 256, 512]
+moyennes = []
+
+for taille in tailles_bits:
+    compteurs = []
+    for _ in range(100):
+        compteurs.append(Eval(taille, 20))
+    moyenne_compteur = sum(compteurs) / 100
+    moyennes.append(moyenne_compteur)
+    print(moyenne_compteur)
+
+
+# Graphe
+plt.plot(tailles_bits, moyennes, marker='o')
+plt.xlabel('Taille en bits du nombre')
+plt.ylabel('Moyenne du nombre de répétitions')
+plt.title('Moyenne du nombre de répétitions en fonction de la taille du nombre')
+plt.grid(True)
+plt.show()
