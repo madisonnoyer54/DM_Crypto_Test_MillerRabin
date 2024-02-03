@@ -58,12 +58,10 @@ for z in range(10000) :
 
 # Question 5
 def MillerRabin(n, cpt):
-    for q in range(cpt):
-        #print("boucle",q)
+    for _ in range(cpt):
         stop = False
         # 1
         s, d = Decomp(n)  
-        #print("s",s,"d",d)
 
         # verifie que d impair 
         if d % 2 == 0:
@@ -79,10 +77,8 @@ def MillerRabin(n, cpt):
 
         # 4
         i = 0
-        #print("ssssss",s)
         while i < s and stop == False:
             resultat = ExpMod(n, a, d * 2**i)
-            #print(resultat," ", i)
             if resultat == -1:
                 stop = True # On peut rien dire et on arret 
             elif resultat == 1:
@@ -100,7 +96,7 @@ def MillerRabin(n, cpt):
 # 1 si premier
 
 
-for z in range(5) :
-    a =  random.randint(1, 20)
+for z in range(500) :
+    a =  random.randint(2, 200)
     print("teste", a)
     print("RESULTA",MillerRabin(a, 20))
