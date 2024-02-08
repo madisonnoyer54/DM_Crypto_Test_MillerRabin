@@ -1,5 +1,4 @@
 import secrets
-import random
 import matplotlib.pyplot as plt
 
 
@@ -18,7 +17,7 @@ def Decomp(n):
 
 # Test de Decomp sur 10000 valeurs différentes
 for _ in range(10000):
-    n =  random.randint(2, 100000)
+    n =  secrets.randbelow(100000) + 2
     s, d = Decomp(n)
     if(n-1 != 2**s*d):
         print(f"Le teste de la question 3 à echoué avec les valeur n={n} s = {s} d = {d}")
@@ -46,9 +45,9 @@ def ExpMod(n, a, t):
 
 # Test de ExpMod sur 10000 valeurs différentes
 for z in range(10000) :
-    a =  random.randint(1, 10000)
-    t =  random.randint(1, 10000)
-    n =  random.randint(1, 10000)
+    a =  secrets.randbelow(10000) + 1
+    t =  secrets.randbelow(10000) + 1
+    n =  secrets.randbelow(10000) + 1
     f = ExpMod(n,a,t)
     if(f != a**t % n):
         print(f"Le teste de la question 4 a échouer sur les valeur a= {a} t = {t} et n = {n}")
@@ -66,7 +65,8 @@ def MillerRabin(n, cpt):
             print(" d n'est pas impair")
 
         # 2
-        a = random.randint(1, n-1)
+        #a = random.randint(1, n-1)
+        a = secrets.randbelow(n-1) + 1
 
         # 3
         resultat = ExpMod(n, a, d)
