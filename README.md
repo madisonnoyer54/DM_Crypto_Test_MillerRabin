@@ -34,7 +34,7 @@ Ce projet utilise Python pour effectuer le test de Miller-Rabin et le visualiser
     tailles_bits = [128, 256, 512, 1024, 2048, 4096]
     ```
 
-    Ce sont les différentes valeurs de ▪. Pour un résultat plus rapide, je vous conseille de supprimer les 2 dernières valeurs (comme préconisé par notre enseignante Minnier).
+    Ce sont les différentes valeurs de b. Pour un résultat plus rapide, je vous conseille de supprimer les 2 dernières valeurs (comme préconisé par notre enseignante Minnier).
 
 ## Contribution
 
