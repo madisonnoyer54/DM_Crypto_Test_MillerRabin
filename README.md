@@ -1,4 +1,27 @@
 # DM_Crypto_Test_MillerRabin
 
-installer sympy: 
-pip install sympy
+Ce projet utilise Python pour effectuer le test de Miller-Rabin et le visualiser sous forme de graphique.
+
+Installation
+1. Assurez-vous d'avoir Python installé sur votre système. Si ce n'est pas le cas, vous pouvez le télécharger sur python.org.
+
+2. Clonez ce dépôt sur votre machine (si vous passez par GitHub) :
+git clone https://github.com/madisonnoyer54/DM_Crypto_Test_MillerRabin.git
+
+3. Installez les dépendances en exécutant la commande suivante :
+make install
+
+Utilisation
+1. Exécutez le script :
+make run
+
+2. Le graphique s'ouvrira automatiquement à la fin de l'exécution du programme.
+
+3. Dans notre programme, à la ligne 123 :
+
+tailles_bits = [128, 256, 512, 1024, 2048, 4096]
+
+Ce sont les différentes valeurs de b. Pour un résultat plus rapide, je vous conseille de supprimer les 2 dernières valeurs (comme préconisé par notre enseignante Minnier).
+
+Contribution 
+Ce projet a été realiser en binôme. Les deux participeants sont NOYER Madison et FAEDO Théo.

@@ -121,6 +121,7 @@ def Eval(b, cpt):
 
 # Question 8
 tailles_bits = [128, 256, 512, 1024, 2048, 4096]
+
 moyennes = []
 
 for taille in tailles_bits:
