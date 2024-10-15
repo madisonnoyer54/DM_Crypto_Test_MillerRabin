@@ -1,6 +1,6 @@
 # DM_Crypto_Test_MillerRabin
 
-Ce projet utilise Python pour effectuer le test de Miller-Rabin et le visualiser sous forme de graphique.
+Ce projet utilise Python pour effectuer le test de Miller-Rabin et le visualiser sous forme de graphique. Il a été réalisé dans le cadre du cours d'Introduction à la Cryptographie en Master 1 Informatique. 
 
 ## Installation
 
